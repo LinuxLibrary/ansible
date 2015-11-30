@@ -1,5 +1,5 @@
-ANSIBLE :
----------
+ANSIBLE on UBUNTU:
+------------------
 
 Step 1 : Install
 	Here we'll use the ppa:ansible/ansible repository as it is easy to remember.
