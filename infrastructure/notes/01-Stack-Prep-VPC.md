@@ -54,7 +54,8 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 	```
 	- Subnet Associates
 	```
-		All the subnets within this network should have taken automatically
+		-> Click Edit
+		-> Check the boxes for all your subnets for associating with your subnets
 	```
 
 - Network ACLs
