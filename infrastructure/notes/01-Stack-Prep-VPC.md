@@ -32,9 +32,14 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 	```
 
 - Create an Internet Gateway and tag it.
-```
+	```
 	Name Tag	: cm-an-ig01
-```
+	```
+	Attach this IG to your VPC
+	```
+	-> Attach VPC
+	-> Select your Desired VPC
+	```
 
 - Create a Route Table and provide your VPC details for routing
 	```
