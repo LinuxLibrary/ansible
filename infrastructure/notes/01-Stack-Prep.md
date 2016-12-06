@@ -30,3 +30,9 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 		Availability Zone	:	As of your choice
 		CIDR Block			:	10.0.16.0/20
 	```
+
+- Create an Internet Gateway and tag it.
+```
+	Name Tag	: cm-an-ig01
+```
+
