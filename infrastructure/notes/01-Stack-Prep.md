@@ -37,10 +37,10 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 ```
 
 - Create a Route Table and provide your VPC details for routing
-```
+	```
 	Name Tag	: cm-an-rt01
 	VPC			: cm-an-vpc01
-```
+	```
 	Add your routes and subnet associates
 	- Routes
 	```
