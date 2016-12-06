@@ -1,8 +1,8 @@
 # Ansible Practice Stack Configuration
 
 For the ansible stack we need 2 hosts
-- Control Server
-- Dev Stack
+- ***Control Server***
+- ***Dev Stack***
 
 I am creating all my stack in AWS. At first i'll create a VPC to configure the network i need for this stack.
 After that i'll create the EC2 machine stack. Let us create the VPC first.
