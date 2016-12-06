@@ -1,4 +1,4 @@
-# Ansible Practice Stack Configuration
+# Ansible Practice Stack Configuration - VPC
 
 For the ansible stack we need 2 hosts
 - ***Control Server***
