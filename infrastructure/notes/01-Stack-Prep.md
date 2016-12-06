@@ -16,17 +16,17 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 
 - Create 2 subnets, one for the control server and the another for the dev stack. 
 	- Subnet for Control Server
-```
+	```
 		Name Tag			:	cm-an-subnet01
 		VPC					:	cm-an-vpc01
 		Availability Zone	:	As of your choice
 		CIDR Block			:	10.0.0.0/20
-```
+	```
 
 	- Subnet for Dev Stack
-```
+	```
 		Name Tag			:	cm-an-subnet02
 		VPC					:	cm-an-vpc01
 		Availability Zone	:	As of your choice
 		CIDR Block			:	10.0.16.0/20
-```
+	```
