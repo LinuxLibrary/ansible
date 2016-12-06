@@ -1,7 +1,7 @@
 # Ansible Practice Stack Configuration - EC2
 
-We have configured VPC, Subnets, Internet Gateway, Routes and NACLs.So our network is ready. Now let us configure our EC2 stack.
-For this we need to configure the separate security groups for both Control Server and the Dev Stack.
+We have configured VPC, Subnets, Internet Gateway, Routes and NACLs. So our network is ready. Now let us configure our EC2 stack.
+For this we need to configure separate security groups for both Control Server and Dev Stack.
 
 - ***Control Server Security Group***
 	```
