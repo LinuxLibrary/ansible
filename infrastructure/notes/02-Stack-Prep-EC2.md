@@ -21,7 +21,7 @@ For this we need to configure separate security groups for both Control Server a
 	
 - ***Dev Stack Security Group***
 	```
-	SG Name		:	cm-an-sg02
+	SG Name		:	cm-andev-sg02
 	VPC			:	cm-an-vpc01
 	```
 	Configure the Inbound and Outbound Rules
