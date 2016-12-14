@@ -54,5 +54,5 @@ Let us launch the instances now
 	-> Select your VPC
 		Auto-assign Public IP : Use subnet setting (Disabled)
 	-> Tag : cm-andev01
-	-> Security Group : cm-an-sg02
+	-> Security Group : cm-andev-sg02
 ```
