@@ -72,18 +72,3 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 		100	All Traffic	0.0.0.0/0
 		
 ```
-
-- Security Groups
-
-> NOTE: Create the Security Groups from EC2 Dashboard and come back to edit the In/Out Bound rules.
-```
-	_:InBound:_
-
-		All ICMP	ICMP	ALL	0.0.0.0/0
-		SSH		TCP	22	0.0.0.0/0
-
-	_:OutBound:_
-
-		All Traffic	ALL	0.0.0.0/0
-
-```
