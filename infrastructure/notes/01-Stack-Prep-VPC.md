@@ -60,10 +60,28 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 
 - Network ACLs
 ```
-		Name Tag	: cm-an-nacl01
-		VPC			: cm-an-vpc01
-		Traffic Rules:
+	Name Tag	: cm-an-nacl01
+	VPC			: cm-an-vpc01
+	Traffic Rules:
+
 		_:InBound:_
-		100	All ICMP	0.0.0.0/0	ALLOW
-		101	All SSH		0.0.0.0/0	ALLOW
+		100	All ICMP	0.0.0.0/0
+		101	All SSH		0.0.0.0/0
+
+		_:OutBound:_
+		100	All Traffic	0.0.0.0/0
+		
+```
+
+- Security Groups
+```
+	_:InBound:_
+
+		All ICMP	ICMP	ALL	0.0.0.0/0
+		SSH		TCP	22	0.0.0.0/0
+
+	_:OutBound:_
+
+		All Traffic	ALL	0.0.0.0/0
+
 ```
