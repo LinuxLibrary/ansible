@@ -62,4 +62,8 @@ After that i'll create the EC2 machine stack. Let us create the VPC first.
 ```
 		Name Tag	: cm-an-nacl01
 		VPC			: cm-an-vpc01
+		Traffic Rules:
+		_:InBound:_
+		100	All ICMP	0.0.0.0/0	ALLOW
+		101	All SSH		0.0.0.0/0	ALLOW
 ```
