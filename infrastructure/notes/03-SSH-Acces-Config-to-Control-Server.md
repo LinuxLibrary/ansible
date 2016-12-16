@@ -47,12 +47,10 @@ Complete SSH Key Exchange in the following process to access the control server 
 - SSH Config
 ```
 	# vi /etc/ssh/ssh_config
-        RSAAuthentication yes
-        PasswordAuthentication yes
-        IdentityFile ~/.ssh/id_rsa
+	RSAAuthentication yes
+	PasswordAuthentication yes
+	IdentityFile ~/.ssh/id_rsa
 
 	# vi /etc/ssh/sshd_config
-	RSAAuthentication yes
-	PubkeyAuthentication yes
 	AuthorizedKeysFile %h/.ssh/authorized_keys
 ```
