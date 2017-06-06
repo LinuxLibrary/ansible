@@ -1,6 +1,6 @@
 # Architechture and Process Flow
 
-- ***Architechture
+- ***Architechture***
 	- An Ansible Control Server will talks to the Remote System
 	- Control server is the primary server which deploys our plays and playbooks
 	- In this case we don't need a dedicated server to act as a Control Server
