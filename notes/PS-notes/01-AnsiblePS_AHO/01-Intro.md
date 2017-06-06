@@ -43,3 +43,22 @@
 	- Automation and Orchestration are not the same but these are realted
 	- Automation is used on a single system
 	- Orchestration takes Automation and co-ordinates the process on multiple systems
+
+- ***YAML***
+	- Some people call this as Yet Another Markup Language
+	- But in fact this will not have any codes and tags and it is not a markup language
+	- It is YAML Ain't a Markup Language
+	- It is just a good structured text which is easy to read and write
+
+- ***Security***
+	- Built-in Security
+	- Uses SSH
+	- Root / Sudo usage
+	- Encrypted Vault
+	- No PKI needed
+
+- ***Extendable***
+	- URL/RESTful calls
+	- Shell Commands
+	- Any Shell commands
+	- Ansible Galaxy
