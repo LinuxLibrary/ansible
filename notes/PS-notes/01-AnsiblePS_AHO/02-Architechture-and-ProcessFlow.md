@@ -11,6 +11,9 @@
 	- Installed and configured OpenSSH
 
 - ***Components***
+
+[Ansible Components](images/01-Components.JPG)
+
 	- Inventory
 		- Hosts and Groups
 		- Host Variables
@@ -33,3 +36,24 @@
 		- At a basic level, playbooks can be used to manage configurations of and deployments to remote machines.
 		- At a more advanced level, they can sequence multi-tier rollouts involving rolling updates, and can delegate actions to other hosts, interacting with monitoring servers and load balancers along the way.
 		- Playbooks are designed to be human-readable and are developed in a basic text language.
+	- Configuration File
+		- Certain settings in Ansible are adjustable via a configuration file. The stock configuration should be sufficient for most users, but there may be reasons you would want to change them.
+		- Changes can be made and used in a configuration file which will be processed in the following order:
+		
+		```
+		* ANSIBLE_CONFIG (an environment variable)
+		* ansible.cfg (in the current directory)
+		* .ansible.cfg (in the home directory)
+		* /etc/ansible/ansible.cfg
+		```
+
+		- Prior to 1.5 the order was:
+
+		```
+		* ansible.cfg (in the current directory)
+		* ANSIBLE_CONFIG (an environment variable)
+		* .ansible.cfg (in the home directory)
+		* /etc/ansible/ansible.cfg
+		```
+
+		- Ansible will process the above list and use the first file found. Settings in files are not merged.
