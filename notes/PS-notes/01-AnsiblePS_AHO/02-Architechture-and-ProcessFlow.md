@@ -12,7 +12,7 @@
 
 - ***Components***
 
-[Ansible Components](images/01-Components.JPG)
+[!AnsibleComponents](images/01-Components.JPG)
 
 	- Inventory
 		- Hosts and Groups
