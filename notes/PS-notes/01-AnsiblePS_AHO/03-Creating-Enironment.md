@@ -45,3 +45,36 @@
 	```
 	# vagrant up
 	```
+
+- Install ansible on the Control Host
+	- Lets ssh to the AnsibleControlServer (acs) and install ansible
+
+	```
+	# vagrant ssh acs
+	# sudo apt-get install ansible
+	# ansible --version
+	# exit
+	```
+
+- Lets configure the repo server on `web` server
+
+	```
+	# vagrant ssh web
+	# yum install epel-release
+	# yum install ansible
+	# ansible --version
+	# exit
+	```
+
+- Lets compile ansible on the `db` server
+
+	```
+	# vagrant ssh db
+	# yum install gcc 
+	# yum install python-setuptools
+	# easy_install pip
+	# yum install python-devel
+	# pip install ansible
+	# ansible --version
+	# exit
+	```
