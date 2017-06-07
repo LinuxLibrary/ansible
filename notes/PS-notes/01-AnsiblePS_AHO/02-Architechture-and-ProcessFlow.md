@@ -10,6 +10,7 @@
 	- As ansible is written in Python we should have Python 2.5 or later installed on Control Server
 	- Installed and configured OpenSSH
 
+---
 
 ![AnsibleComponents](images/01-Components.JPG)
 
@@ -57,3 +58,7 @@
 		```
 
 		- Ansible will process the above list and use the first file found. Settings in files are not merged.
+	- Variables
+		- Host Variables: Use variables defined in Inventory per host or group
+		- Fact Variables: Use data gathered from the remote managed host
+		- Dynamic Variables: Use data gathered from the tasks or created on time
