@@ -10,10 +10,10 @@
 	- As ansible is written in Python we should have Python 2.5 or later installed on Control Server
 	- Installed and configured OpenSSH
 
-- ***Components***
 
 ![AnsibleComponents](images/01-Components.JPG)
 
+- ***Components***
 	- Inventory
 		- Hosts and Groups
 		- Host Variables
