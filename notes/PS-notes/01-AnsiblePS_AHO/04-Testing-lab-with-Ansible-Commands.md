@@ -44,4 +44,5 @@
 		-u <USER>
 		-m <MODULE>
 		-k <prompt for ssh password>
+		-v (-vv debug level-2 / -vvv debug level-3)
 	```
