@@ -23,3 +23,25 @@
 # ansible dbservers -i inventory -m service -a "name=mysql-server enabled=yes state=started" --sudo
 # ansible webservers:dbservers -i inventory -m service -a "name=iptables state=stopped" --sudo
 ```
+
+# Using Setup Modules
+
+- Through the `setup` module we can gather facts of the machine we want to execute plays on.
+- The facts contains all the system information which is needed at the installation process
+- For example we want to know what all the ehternet interfaces available on a machine and the configurations of those interfaces
+
+```
+# ansible web1 -i inventory -m setup -a "filter=ansible_eth*"
+```
+
+- To know the information of the mounts on that machine
+
+```
+# ansible web1 -i inventory -m setup -a "filter=ansible_mounts"
+```
+
+- To gather all the faces of the machines and store those as facts in a directory `setup` as files with the host names
+
+```
+# ansible web1 -i inventory -m setup --tree ./setup
+```
