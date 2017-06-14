@@ -83,3 +83,12 @@
 ```
 # ansible-playbook <PLAYBOOK> --limit @/home/<USER>/<PLAYBOOK>.retry
 ```
+
+# Playbook Controls
+
+- Let us see some conditional based playbooks and executions
+- Below is the list of tasks for that
+	- Add install decision based on OS
+	- Create template for Apache config
+	- Deploy configuration
+	- Restart service if needed
