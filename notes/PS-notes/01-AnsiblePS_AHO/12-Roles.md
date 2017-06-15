@@ -68,6 +68,7 @@
 	- Define a `dbserver` role
 	- Define `common-server` role
 	- Apply roles
+- Visit [MyAnsibleRoles](https://github.com/LinuxLibrary/ansible/tree/master/configs/PS-Configs/04-Roles) to see the above
 
 - Getting roles
 	- If we are need of roles then we have 2 ways
