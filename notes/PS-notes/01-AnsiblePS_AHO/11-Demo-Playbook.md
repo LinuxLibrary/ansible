@@ -92,3 +92,56 @@
 	- Create template for Apache config
 	- Deploy configuration
 	- Restart service if needed
+- Below is the final playbook with all my requirements
+
+```
+---
+- hosts: webservers
+  sudo: yes
+  vars:
+    http_port: 80
+    doc_dir: /ansible
+    doc_root: /var/www/html/ansible
+    max_clients: 5
+  vars_prompt:
+    - name: username
+      prompt: What is your name? What is your Quest? What is your fav color?
+
+  tasks:
+  - name: Ensure Apache is installed
+    yum: name=httpd state=present
+    when: ansible_os_family == "RedHat"
+
+  - name: Start Apache Service
+    service: name=httpd enabled=yes state=started
+
+  - name: Deploy Apachec Configuration File
+    template: src=templates/httpd.j2 dest=/etc/httpd/httpd.conf
+    notify: 
+      - Restart Apache
+
+  - name: Copy Site Files
+    template: src=templates/index.j2 dest={{ doc_root }}/index.html
+
+  handlers: 
+    - name: Restart Apache
+      service: name=httpd state=restarted
+
+- hosts: dbservers
+  sudo: yes
+
+  tasks:
+  - name: Ensure MySQL installed
+    yum: name=mysql-server state=present
+    when: ansible_os_family == "RedHat"
+
+  - name: Start MySql Service
+    service: name=mysqld enabled=yes state=started
+
+- hosts: webservers:dbservers
+  sudo: yes
+
+  tasks:
+  - name: Stop IPTABLES
+    service: name=iptables state=stopped
+```
