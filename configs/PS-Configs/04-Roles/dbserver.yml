@@ -1,6 +1,0 @@
----
-- hosts: dbservers
-  sudo: yes
-  roles:
-  - dbserver
-  gather_facts: no

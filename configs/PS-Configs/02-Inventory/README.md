@@ -1,1 +1,0 @@
-# Inventory Directories Structure
