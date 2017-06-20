@@ -37,5 +37,5 @@
 ```
 
 ```
-# ansible-playbook vartest2.yaml --extra-vars "hosts=web1 gather=yes name=telnet"
+# ansible-playbook vartest2.yaml --extra-vars "myhost=web1 gather=yes pkg=telnet"
 ```
