@@ -1,4 +1,4 @@
-# Ansible Dependencies
+# Dependencies for Ansible
 
 - Ensure your have your package management repositories up to date, if not please update those
 - Ensure Python is 2.6 or 2.7. Some of the newer version might not work properly
