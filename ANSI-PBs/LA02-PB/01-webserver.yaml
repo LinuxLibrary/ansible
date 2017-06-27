@@ -1,0 +1,6 @@
+--- # Playbook - 01 - Install elinks on webserver
+- hosts: web
+  tasks:
+  - name: Install elinks 
+    yum: pkg=elinks state=latest
+...
