@@ -12,3 +12,4 @@
   tasks:
     - name: '{{ pkg }}'
       state: latest 
+...
