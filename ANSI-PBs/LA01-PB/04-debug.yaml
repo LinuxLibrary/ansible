@@ -12,3 +12,4 @@
       state: latest
     register: result
   - debug: var=result  
+...
