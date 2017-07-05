@@ -1,0 +1,11 @@
+--- # Playbook - 01 - Install elinks on webserver
+- hosts: web
+  vars:
+    control_server: localhost
+    web_root: /var/www/html
+  vars_files:
+  - 03-vars.yml
+  tasks:
+  - name: Install elinks 
+    yum: pkg=elinks state=latest
+...
