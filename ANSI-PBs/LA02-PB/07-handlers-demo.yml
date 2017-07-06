@@ -13,8 +13,10 @@
     - name: web_domain
       prompt: Web Domain
   tasks:
-    - name: Install Elinks
-      action: yum name=elinks state=latest
-    - name: Check for telnet client
-      yum: name=telnet state=absent
+    - name: Install Web Server
+      yum: name=httpd state=latest
+      notify: Restart HTTPD
+  handlers:
+    - name: Restart HTTPD
+      service: name=httpd state=restarted
 ...
