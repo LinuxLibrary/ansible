@@ -1,0 +1,15 @@
+- Hosts: web
+- User: ansible
+- Sudo privs: yes
+- Gather facts: yes
+
+- Date/Time of Pre-Play
+
+- Install Apache WebServer packages
+- Start service
+- Verify the service
+- Install below client packages
+        - elinks
+        - telnet
+
+- Date/Time of Post-Play
