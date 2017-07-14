@@ -34,3 +34,40 @@
 
 - Date/Time of Post-Play
 ```
+
+- From the above outline we can build our playbook
+- Copy the outline file to a `.yml` file
+- Do the changes accordingly
+
+```
+--- # Outline to Playbook Translation
+- hosts: web
+  user: ansible
+  sudo: yes
+  gather_facts: yes
+
+  tasks:
+  - name: Display Date/Time of Pre-Play
+    raw: /usr/bin/date > /home/ansible/playbook_start.log
+  - name: Install Apache WebServer packages
+    yum: name=httpd state=latest enabled=yes
+  - name: Start Web-Service
+    service: name=httpd state=restarted
+  - name: Verify the WebService
+    command: service httpd status
+    register: result
+  - debug: var=result
+  - name: Install client package - telnet
+    yum: name=telnet state=latest
+  - name: Install client package - elinks
+    yum: name=elinks state=latest
+  - name: Display Date/Time of Post-Play
+    raw: /usr/bin/date > /home/ansible/playbook_end.log
+...
+```
+
+- After creating the playbook we can check the playbook whether it is correctly formatted or not
+
+```
+# ansible-playbook 08-WebOutline.yml --check
+```
