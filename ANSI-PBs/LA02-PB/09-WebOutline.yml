@@ -1,0 +1,31 @@
+--- # Outline to Playbook Translation
+- hosts: web
+  user: ansible
+  sudo: yes
+  gather_facts: yes
+
+  tasks:
+  - name: Display Date/Time of Pre-Play
+    command: /usr/bin/date
+    register: starttime
+  - debug: var=starttime
+  - name: Install Apache WebServer packages
+    yum: name=httpd state=latest enabled=yes
+    notify: Start Web-Service
+  - name: Verify the WebService
+    command: service httpd status
+    register: result
+  - debug: var=result
+  - name: Install client package - telnet
+    yum: name=telnet state=latest
+  - name: Install client package - elinks
+    yum: name=elinks state=latest
+  - name: Display Date/Time of Post-Play
+    commands: /usr/bin/date
+    register: endtime
+  - debug: var=endtime
+
+  handlers:
+  - name: Start Web-Service
+    service: name=httpd state=restarted
+...
