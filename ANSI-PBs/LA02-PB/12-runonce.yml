@@ -1,0 +1,13 @@
+--- # RUNONCE PLAYBOOK EXAMPLE
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Run uptime and log the output
+    shell: /usr/bin/uptime >> /home/ansible/uptime.log
+  - name: List the /var directory and log it
+    shell: ls -la >> /home/ansible/vardir.list
+    run_once: true
+...
