@@ -1,0 +1,11 @@
+--- # Lookup Playbook example
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - debug: msg="Lookup the Superhero for Bruce Wayne {{ lookup('csvfile', 'Bruce Wayne file=lookup.csv delimiter=, default=NOMATCH') }}"
+  - debug: msg="Lookup the Superhero for Bruce Wayne {{ lookup('csvfile', 'Wayne file=lookup.csv delimiter=, col=1 default=NOMATCH') }}"
+  - debug: msg="{{ lookup('env','HOME') }} is the value listed"
+...
