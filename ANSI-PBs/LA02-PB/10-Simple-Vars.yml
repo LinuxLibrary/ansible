@@ -1,0 +1,24 @@
+--- # Playbook - 05 - Variables Demo
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    playbook_version: 0.1
+  vars_files:
+    - conf/copyright.yml
+    - conf/webdefaults.yml
+  vars_prompt:
+    - name: pkg_name
+      prompt: Please input the package name of the webserver you want to install
+  tasks:
+    - name: Install Web Server
+      yum: name=httpd state=latest
+      notify: Restart HTTPD
+    - name: Install Lynx browser
+      yum: name={{ pkg_lynx }} state=latest
+  handlers:
+    - name: Restart HTTPD
+      service: name=httpd state=restarted
+...
