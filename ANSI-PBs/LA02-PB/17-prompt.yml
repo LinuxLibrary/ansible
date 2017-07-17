@@ -1,0 +1,17 @@
+--- # PROMPT FOR PACKAGES
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    playbook_version: 0.1
+  vars_prompt:
+  - name: pkg_name
+    prompt: Which package to install?
+    default: telnet
+    private: no
+  tasks:
+  - name: Install the indicated package
+    yum: name={{ pkg_name }} state=latest
+...
