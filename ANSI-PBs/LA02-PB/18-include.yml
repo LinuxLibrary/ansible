@@ -1,0 +1,11 @@
+--- # BASIC INCLUDE PLAYBOOK EXAMPLE
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - include: plays/packages.yml
+  - name: Verify telnet installed
+    shell: yum list installed | grep telnet > /home/ansible/pkgs.log
+...
