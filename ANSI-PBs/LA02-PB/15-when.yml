@@ -1,0 +1,25 @@
+--- # WHEN CONDITION PLAYBOOK EXAMPLE
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  vars:
+    playbook_type: conditional_example
+  vars_files:
+    - conf/copyright.yml
+    - conf/webdefaults.yml
+  tasks:
+  - name: Install Apache appropriate to the distribution type (Debian/Ubuntu)
+    apt: name=apache2 state=latest
+    when: ansible_os_family == "Debian"
+    notify: Restart Apache2
+  - name: Install Apache appropriate to the distribution type (Redhat/CentOS)
+    yum: name=httpd state=latest
+    when: ansible_os_family == "RedHat"
+    notify: Restart HTTPD
+  handlers:
+  - name: Restart Apache2
+    service: name=apache2 enabled=yes state=restarted
+  - name: Restart HTTPD
+    service: name=httpd enabled=yes state=restarted 
+...
