@@ -1,0 +1,17 @@
+--- # UNTIL PLAYBOOK EXAMPLE
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Instaling Apache
+    yum: name=httpd state=latest
+  - name: Verify Service status
+    shell: systemctl status httpd
+    register: result
+    until: result.stdout.find("active (running)") != -1
+    retires: 5
+    delay: 5
+  - debug: var=result
+...
