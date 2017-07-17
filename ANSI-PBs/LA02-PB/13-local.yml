@@ -1,0 +1,8 @@
+--- # LOCAL PLAYBOOK EXAMPLE
+- hosts: 127.0.0.1
+  sudo: yes
+  connection: local
+  tasks:
+  - name: Install telnet
+    yum: name=telnet state=latest
+...
