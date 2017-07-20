@@ -1,0 +1,2 @@
+- name: Verify lynx installed
+  shell: yum list installed | grep lynx > /home/ansible/lynx.log
