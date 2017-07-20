@@ -1,0 +1,23 @@
+--- # TAG FUNCTIONALITY EXAMPLE
+- hosts: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Install telnet and lynx packages
+    yum: name={{ item }} state=latest
+    with_items:
+    - telnet
+    - lynx
+    tags:
+    - packages
+  - name: Verify telnet installed
+    shell: yum list installed | grep telnet > /home/ansible/telnet.log
+    tags:
+    - verification
+  - name: Verify lynx installed
+    shell: yum list installed | grep lynx > /home/ansible/lynx.log
+    tags:
+    - always
+...
