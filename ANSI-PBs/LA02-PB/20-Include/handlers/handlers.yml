@@ -1,0 +1,2 @@
+- name: Restart HTTPD
+  service: name=httpd enabled=yes state=latest
