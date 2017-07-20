@@ -9,5 +9,6 @@
   tasks:
   - include: packages/packages.yml
   - include: commands/commands.yml
+  handlers:
   - include: handlers/handlers.yml
 ...
