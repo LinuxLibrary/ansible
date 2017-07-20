@@ -1,0 +1,8 @@
+- name: Install Apache packages
+  yum: name=httpd state=latest
+  notify: Restart HTTPD
+- name: Install the required packages
+  yum: name={{ item }} state=latest
+  with_items:
+  - lynx
+  - telnet
