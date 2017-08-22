@@ -1,0 +1,25 @@
+---
+- name: Install Nginx
+  yum: name=nginx state=latest
+- name: Create Nginx Directory Structure
+  file: path={{ item }} state=directory mode=0755
+  with_items:
+  - /etc/nginx/conf.d
+  - /etc/nginx/sites-available
+- name: Setup Nginx reverse proxy for Kibana
+  template: src=kibana.conf.j2 dest=/etc/nginx/sites-available/default owner=root group=root mode=0644
+  register: nginx_needs_restart
+- name: Install Python Setuptools for PIP
+  yum: name=python-setuptools state=latest
+- name: Install PIP
+  shell: easy_install pip
+- name: Install Pexpect
+  shell: pip install pexpect
+- name: Copy Kibana Admin User script
+  template: src=kibanaAdmin.j2 dest=/tmp/createUser owner=root group=root mode=0744
+- name: Create Kibana Admin User
+  expect:
+    command: bash /tmp/createUser
+    responses: 
+      'Password:' : '{{ kibana_password }}'
+  notify: Restart Nginx

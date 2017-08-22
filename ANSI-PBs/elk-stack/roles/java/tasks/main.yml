@@ -1,0 +1,8 @@
+---
+- name: Install EPEL Repository and Update
+  yum: name=epel-release state=installed
+- name: Install Java
+  yum: name={{ item }} state=installed update_cache=yes
+  with_items:
+  - java-1.8.0-openjdk
+  - java-1.8.0-openjdk-devel

@@ -1,0 +1,8 @@
+---
+- name: Import GPG Key for ElasticSearch
+  shell: rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
+- name: Add ElasticSearch Repo
+  shell: echo -e "[elasticsearch]\nname=Elasticsearch repository\nbaseurl=http://packages.elastic.co/elasticsearch/2.x/centos\ngpgcheck=1\ngpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch\nenabled=1" > /etc/yum.repos.d/elasticsearch.repo
+- name: Install ElasticSearch
+  yum: name=elasticsearch state=latest
+  notify: Restart ElasticSearch

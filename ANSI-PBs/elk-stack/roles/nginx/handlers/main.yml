@@ -1,0 +1,3 @@
+---
+- name: Restart Nginx
+  systemd: name=nginx enabled=yes state=restarted

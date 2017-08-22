@@ -1,0 +1,3 @@
+---
+- name: Restart ElasticSearch
+  systemd: name=elasticsearch enabled=yes state=restarted

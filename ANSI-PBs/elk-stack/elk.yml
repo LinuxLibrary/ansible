@@ -1,0 +1,11 @@
+--- # Install ELK Stack through Ansible
+- hosts: elk
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  roles:
+  - { role: java }
+  - { role: elasticsearch }
+  - { role: kibana }
+  - { role: nginx }
+  - { role: logstash }

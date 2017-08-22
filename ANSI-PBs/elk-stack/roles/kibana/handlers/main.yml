@@ -1,0 +1,3 @@
+---
+- name: Restart Kibana
+  systemd: name=kibana enabled=yes state=restarted

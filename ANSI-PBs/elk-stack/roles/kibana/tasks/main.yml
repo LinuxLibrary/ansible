@@ -1,0 +1,6 @@
+---
+- name: Add Kibana Repo
+  shell: echo -e "[kibana]\nname=Kibana repository\nbaseurl=http://packages.elastic.co/kibana/4.4/centos\ngpgcheck=1\ngpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch\nenabled=1" > /etc/yum.repos.d/kibana.repo
+- name: Install Kibana
+  yum: name=kibana state=latest
+  notify: Restart Kibana
