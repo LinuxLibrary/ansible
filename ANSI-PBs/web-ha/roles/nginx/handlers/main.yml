@@ -1,0 +1,7 @@
+---
+- name: NGINX | Restart Nginx
+  systemd: name=nginx enabled=yes state=restarted
+- name: NGINX | Verify Nginx
+  shell: curl -Is $(ifconfig | grep 'inet.*192.168' | awk '{print $2}') | grep HTTP
+  register: result
+- debug: var=result["stdout"]

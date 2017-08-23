@@ -1,0 +1,8 @@
+---
+- name: NGINX | Configure Nginx Repo
+  yum: name=http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+- name: NGINX | Install Nginx
+  yum: name=nginx state=latest
+- name: NGINX | Place Nginx Index File
+  shell: rm -rf /usr/share/nginx/html/index.html && echo -e "Ansible Demo - $(ifconfig | grep 'inet.*192.168' | awk '{print $2}')" > /usr/share/nginx/html/index.html
+  notify: NGINX | Restart Nginx

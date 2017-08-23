@@ -1,0 +1,11 @@
+---
+haproxy_app_name: myapp
+haproxy_mode: http
+haproxy_enable_stats: enable 
+haproxy_algorithm: roundrobin
+haproxy_backend_servers:
+  - {name: node01, ip: 192.168.1.51, port: 80, paramstring: cookie A check}
+  - {name: node02, ip: 192.168.1.52, port: 80, paramstring: cookie A check}
+  - {name: node03, ip: 192.168.1.53, port: 80, paramstring: cookie A check}
+haproxy_stats_users:
+  - {username: haproxy, password: haproxy}

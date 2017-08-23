@@ -1,0 +1,8 @@
+---
+- name: HA-Proxy | Install HA-Proxy
+  yum: name=haproxy state=latest update_cache=yes
+#- name: HA-Proxy | Enable Init Script
+#  replace: dest='/etc/default/haproxy' regexp='ENABLED=0' replace='ENABLED=1'
+- name: HA-Proxy | Update HA-Proxy Config
+  template: src=templates/haproxy.cfg dest=/etc/haproxy/haproxy.cfg backup=yes
+  notify: HA-Proxy | Restart HA-Proxy

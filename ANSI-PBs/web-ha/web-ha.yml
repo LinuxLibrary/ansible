@@ -1,0 +1,13 @@
+---
+- hosts: control01
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  roles:
+  - { role: ha-proxy }
+- hosts: web-nodes
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  roles:
+  - { role: nginx }

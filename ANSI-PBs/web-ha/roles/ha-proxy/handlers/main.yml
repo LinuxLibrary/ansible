@@ -1,0 +1,3 @@
+---
+- name: HA-Proxy | Restart HA-Proxy
+  systemd: name=haproxy enabled=yes state=restarted
