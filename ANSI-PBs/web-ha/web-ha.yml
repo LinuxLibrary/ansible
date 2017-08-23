@@ -1,4 +1,15 @@
 ---
+- hosts: control01:&web-nodes
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  tasks:
+  - name: PRE-REQs | Install required packages
+    yum: name={{ item }} state=latest
+    with_items:
+    - git
+    - python
+    - net-tools
 - hosts: control01
   remote_user: vagrant
   become: yes
