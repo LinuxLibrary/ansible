@@ -1,10 +1,12 @@
 #!/bin/bash
 
 # Install GIT and ANSIBLE
-sudo yum update -y
-sudo yum install -y epel-release 
-sudo yum update -y
-sudo yum install git ansible -y
+if [[ ! $(git version) && ! $(ansible --version) ]]
+then
+	sudo yum install -y epel-release 
+	sudo yum update -y
+	sudo yum install git ansible -y
+fi
 
 # Clone Repo
 if [[ $(git version) ]] 
