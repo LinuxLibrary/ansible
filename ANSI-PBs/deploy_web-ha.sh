@@ -1,9 +1,10 @@
 #!/bin/bash
-# Author: Arjun Shrinivas
-
 
 # Install GIT and ANSIBLE
-sudo yum update && sudo yum install -y git python python-setuptools && easy_install pip && pip install ansible
+sudo yum update -y
+sudo yum install -y epel-release 
+sudo yum update -y
+sudo yum install git ansible -y
 
 # Clone Repo
 if [[ $(git version) ]] 
@@ -14,6 +15,5 @@ fi
 
 if [[ $(ansible --version) && -f ~/web-ha/web-ha.yml ]]
 then
-	ansible-playbook -i hosts web-ha.yml
+	cd ~/web-ha && ansible-playbook -i hosts web-ha.yml
 fi
-
