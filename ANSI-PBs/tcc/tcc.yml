@@ -1,0 +1,23 @@
+---
+- hosts: all
+  remote_user: wsapp
+  become: yes
+  become_user: root
+  roles:
+  - { role: common }
+
+- hosts: primary
+  remote_user: wsapp
+  become: yes
+  become_user: root
+  roles:
+  - { role: primary }
+
+- hosts: secondary
+  remote_user: wsapp
+  become: yes
+  become_user: root
+  roles:
+  - { role: secondary }
+
+

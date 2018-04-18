@@ -1,0 +1,12 @@
+- name: Backup Web Configs
+  command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.orig
+- name: Copy Web Configs
+  file: src=httpd.conf dest=/etc/httpd/conf/httpd.conf
+- name: Copy Web Config Files
+  file: src={{ item }} dest=/etc/httpd/conf.d/{{ item }}
+  with_items:
+    file1.conf
+    file2.conf
+  notify: Restart HTTPD
+- name: Copy Cron file
+  file: src=wsapp.cron dest=/var/spool/cron/wsapp

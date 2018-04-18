@@ -1,0 +1,5 @@
+- name: Backup Web Configs
+  command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.orig
+- name: Copy Web Configs
+  file: src=httpd.conf dest=/etc/httpd/conf/httpd.conf
+  notify: Restart HTTPD
