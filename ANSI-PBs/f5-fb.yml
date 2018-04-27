@@ -1,0 +1,58 @@
+---
+- include_vars: vars/lb-credentials.yml
+
+# Sometimes server has been registered with hostname, sometimes with the FQDN in the Load balancer. Need to try both
+- name: "setting {{ node_name|split_string('.')|first }} to {{ state }}"
+  local_action: >
+    bigip_node
+    server="{{ lb_server }}"
+    user="{{ lb_user }}"
+    password="{{ lb_password }}"
+    session_state="{{ state }}"
+    monitor_state="{{ state }}"
+    name="{{ node_name|split_string('.')|first }}"
+    validate_certs=no
+  ignore_errors: true
+  become: false
+  register: lb_use_host
+
+- name: "setting {{ node_name }} to {{ state }}"
+  local_action: >
+    bigip_node
+    server="{{ lb_server }}"
+    user="{{ lb_user }}"
+    password="{{ lb_password }}"
+    session_state="{{ state }}"
+    monitor_state="{{ state }}"
+    name="{{ node_name }}"
+    validate_certs=no
+  ignore_errors: true
+  become: false
+  register: lb_use_fqdn
+
+- name: "setting {{ node_name}}. to {{ state }}"
+  local_action: >
+    bigip_node
+    server="{{ lb_server }}"
+    user="{{ lb_user }}"
+    password="{{ lb_password }}"
+    session_state="{{ state }}"
+    monitor_state="{{ state }}"
+    name="{{ node_name }}."
+    validate_certs=no
+  ignore_errors: true
+  become: false
+  register: lb_use_fqdn_dot
+
+
+- name: "check if node was set to {{ state }} in the load balancer"
+  assert:
+    that:
+      - lb_use_host|changed or lb_use_fqdn|changed or lb_use_fqdn_dot|changed
+
+- name:
+  pause:
+    seconds=15
+    prompt="Waiting 15 seconds before proceding..."
+  become: false
+  when: state == 'disabled'
