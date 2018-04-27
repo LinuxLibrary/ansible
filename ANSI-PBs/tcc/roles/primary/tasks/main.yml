@@ -3,7 +3,7 @@
 - name: Copy Web Configs
   file: src=httpd.conf dest=/etc/httpd/conf/httpd.conf
 - name: Copy Web Config Files
-  file: src={{ item }} dest=/etc/httpd/conf.d/{{ item }}
+  file: src={{ item }} dest=/etc/httpd/conf.d/
   with_items:
   - file1.conf
   - file2.conf
