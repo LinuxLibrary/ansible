@@ -6,7 +6,7 @@
   - wget
   - httpd
 - name: Copy Repo files
-  file: src={{ item }} dest=/etc/yum.repos.d/{{ item }}
+  file: src={{ item }} dest=/etc/yum.repos.d/
   with_items:
   - ius.repo
   - ius-archive.repo
@@ -61,7 +61,7 @@
   - php56u-suhosin-*
   - perl-DBD-MySQ*
 - name: Copy host file
-  file: src={{ item }} dest=/etc/{{ item }}
+  file: src={{ item }} dest=/etc/
   with_items:
   - hosts
   - resolv.conf
