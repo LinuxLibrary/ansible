@@ -1,0 +1,20 @@
+---
+- name: Path test
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Get app homedir
+    find:
+      paths:
+      - "/GitHub/test/"
+      patterns: "bin"
+      recurse: yes
+      file_type: directory
+    register: pathtest
+  - name: Test operation
+    args:
+      chdir: "{{ item.path }}"
+    shell: "./EPACtrl.sh {{ application }}"
+    with_items: "{{ pathtest.files }}"
+    when:
+      - item.path | search("{{ application }}"
