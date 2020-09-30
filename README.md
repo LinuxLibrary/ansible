@@ -1,6 +1,6 @@
 # Automation through Ansible
 This repository contains information, notes and configuration details which
-can be usefull to learn ANSIBLE. Ansible is a free software platform for co
+can be useful to learn ANSIBLE. Ansible is a free software platform for co
 -nfiguring and managing computers. It combines multi-node software deployme
 -nt, ad hoc task execution, and configuration management. It manages nodes 
 over SSH or PowerShell and requires Python (2.4 or later) to be installed on 
