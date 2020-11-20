@@ -1,0 +1,10 @@
+---
+agApiUrlList: []
+ag_cluster_api_eng: "https://dyantris-eng.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_sand: "https://dyantris-sand.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_preprod: "https://dyantris-preprod.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_preprod_mf: "https://dyantris-preprod_mf.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_perf: "https://dyantris-perf.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_perf_mf: "https://dyantris-perf_mf.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_prod: "https://dyantris-prod.linuxlibrary.com/psgwinstaller/unix/latest"
+ag_cluster_api_prod_mf: "https://dyantris-prod_mf.linuxlibrary.com/psgwinstaller/unix/latest"
