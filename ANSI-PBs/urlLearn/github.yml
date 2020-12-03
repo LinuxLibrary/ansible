@@ -31,7 +31,15 @@
       agClusterApi: "ag_cluster_api_{{ dtm_cluster|lower }}"
 
   - set_fact:
-      agBaseUrl: "{{ agClusterApi }}.split('/psg')[0] + '/api/cluster/v2/activeGates?hostname={{ ansible_hostname }}'"
+      agBaseUrl: "{{ item }}'"
+    with_items: "{{ agClusterApi }}.split('/psg')[0] + '/api/cluster/v2/activeGates?hostname={{ ansible_hostname }}'"
+
+  - set_fact:
+      dtmCluster: "{{ dtm_cluster|lower|regex_replace('_','-') }}"
+
+  - set_fact:
+      agNewBaseUrl: "{{ item }}"
+    with_items: "https://dyantris-{{ dtmCluster }}.linuxlibrary.com/psgwinstaller/unix/latest"
 
   - set_fact:
       agApiUrl: "{{ agBaseUrl }}"
@@ -40,4 +48,25 @@
 #      agApiUrlList: "agApiUrlList + "
 
   - debug:
-      var: "{{ agBaseUrl }}"
+      msg: "{{ item }}"
+    with_items:
+    - "{{ agBaseUrl }}"
+    - "https://dyantris-{{ dtmCluster }}.linuxlibrary.com/psgwinstaller/unix/latest"
+    - "{{ agNewBaseUrl }}"
+
+  - set_fact:
+      type: "{{ item }}"
+    with_items: "git{{ gittype }}"
+
+  - name:
+    uri:
+      url: "https://api.git{{ gittype|lower|regex_replace('_','') }}.com/users/{{ user }}/repos"
+      headers:
+        Content-Type: application/json
+        Authorization: "Api-Token bc8b36ad2eb983d5018cc9dda589a31ad011843c"
+      method: GET
+      timeout: 60
+    register: gitrepos
+
+  - debug:
+      msg: "{{ gitrepos.json }}"

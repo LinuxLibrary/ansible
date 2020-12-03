@@ -8,3 +8,6 @@ ag_cluster_api_perf: "https://dyantris-perf.linuxlibrary.com/psgwinstaller/unix/
 ag_cluster_api_perf_mf: "https://dyantris-perf_mf.linuxlibrary.com/psgwinstaller/unix/latest"
 ag_cluster_api_prod: "https://dyantris-prod.linuxlibrary.com/psgwinstaller/unix/latest"
 ag_cluster_api_prod_mf: "https://dyantris-prod_mf.linuxlibrary.com/psgwinstaller/unix/latest"
+
+github: "https://api.github.com/users/{{ user }}/repos"
+gitlab: "https://api.gitlab.com/users/{{ user }}/repos"
