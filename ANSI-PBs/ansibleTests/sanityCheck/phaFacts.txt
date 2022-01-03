@@ -1,0 +1,10 @@
+DC1_NAME=datacenter1
+DC2_NAME=us-east-2a
+GITUSER=vmsnivas
+GITORG=LinuxLibrary
+"firstname"
+"lastname"
+['"firstname"', '"lastname"']
+[""firstname"", ""lastname""]
+'[""192.168.1.110"", ""192.168.2.120""]'
+''[""192.168.1.110"", ""192.168.2.120""]''

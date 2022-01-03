@@ -1,0 +1,26 @@
+---
+- name: Check connectivity of the hosts
+  hosts: localhost
+  vars:
+    agList: [host1,host2,host3]
+    tempFile: 'test1.txt'
+  tasks:
+  - name: NSLOOKUP on hosts
+    command: "nslookup {{ item }}"
+    with_items: "{{ agList }}"
+    register: nslookupOut
+
+  - debug:
+      var: nslookupOut
+
+  - name: Touch file
+    file:
+      path: "{{ tempFile }}"
+      state: touch
+      mode: 0755
+
+  - name: Write text to file
+    lineinfile:
+      path: "{{ tempFile }}"
+      insertbefore: BOF
+      line: "[INFO] Line 1\n[INFO] Line 2"

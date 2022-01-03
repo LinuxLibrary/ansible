@@ -1,0 +1,40 @@
+---
+- name: API Test
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Get GITUSER
+    shell: "source phaFacts.txt && echo $GITUSER"
+    register: gitUser
+
+  - name: Get GITORG
+    shell: "source phaFacts.txt && echo $GITORG"
+    register: gitOrg
+
+  - name: Set facts
+    set_fact:
+      "{{ item.key }}": "{{ item.value }}"
+    with_items:
+    - { key: 'GITUSER', value: "{{ gitUser.stdout }}" }
+    - { key: 'GITORG', value: "{{ gitOrg.stdout }}" }
+
+  - name: Get list of repos
+    uri:
+      url: "https://api.github.com/orgs/{{ GITORG }}"
+      headers:
+        Content-Type: application/json
+        Authorization: "Api-Token bc8b36ad2eb983d5018cc9dda589a31ad011843c"
+      method: GET
+      force_basic_auth: false
+      body_format: json
+      return_content: true
+      timeout: 60
+    register: ghout
+    until: ghout.status|int == 200
+    retries: 5
+    delay: 1
+
+  - name: Print Output
+    debug:
+      msg: "{{ ghout.content }}"
+

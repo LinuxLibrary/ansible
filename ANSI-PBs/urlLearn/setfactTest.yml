@@ -1,0 +1,33 @@
+---
+# Playbook to learn through URL and APIs using GitHub APIs
+- hosts: localhost
+  connection: ssh
+  gather_facts: yes
+  vars_files:
+  - vars.yml
+  tasks:
+  - name: Get list of repos
+    uri:
+      url: "https://api.github.com/orgs/LinuxLibrary"
+      headers:
+        Content-Type: application/json
+        Authorization: "Api-Token bc8b36ad2eb983d5018cc9dda589a31ad011843c"
+      method: GET
+      #force_basic_auth: false
+      #body_format: json
+      #return_content: true
+      timeout: 60
+    register: ghout
+
+  - set_fact:
+      gitout: "{{ ghout }}"
+    when: vc == "git"
+
+#  - debug:
+#      var: "{{ item }}"
+#    with_items:
+#    - "{{ ghout }}"
+#    - "{{ vc }}out"
+
+  - debug:
+      var: "gitout.json.name"

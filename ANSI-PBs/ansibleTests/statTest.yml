@@ -1,0 +1,20 @@
+---
+- name: File Stat Test
+  hosts: localhost
+  tasks:
+  - name: Check workspace in Users
+    stat:
+      path: "/Users/workspace"
+    register: checkUsers
+
+  - name: Check workspace in Library
+    stat:
+      path: "/Library/workspace"
+    when: not checkUsers.stat.exists
+    register: checkLibrary
+
+  - name: Check workspace in /Users/arjunshrinivas
+    stat:
+      path: "/Users/arjunshrinivas/workspace"
+    when: not checkUsers.stat.exists and not checkLibrary.stat.exists
+...

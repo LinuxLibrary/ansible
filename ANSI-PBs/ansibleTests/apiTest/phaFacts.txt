@@ -1,0 +1,4 @@
+DC1_NAME=datacenter1
+DC2_NAME=us-east-2a
+GITUSER=vmsnivas
+GITORG=LinuxLibrary

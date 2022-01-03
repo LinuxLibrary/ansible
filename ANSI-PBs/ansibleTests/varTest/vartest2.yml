@@ -1,0 +1,17 @@
+---
+- name: Var test 2
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Source facts file
+    shell: "source phaFacts.txt && echo $DC1_NAME"
+    register: dc1Name
+
+  - set_fact:
+      DC1_NAME: "{{ dc1Name.stdout }}"
+
+  - debug:
+      msg: "{{ item }}"
+    with_items:
+    - "{{ DC1_NAME }}"
+    - "{{ DC2_NAME | default('us-east-2a') }}"

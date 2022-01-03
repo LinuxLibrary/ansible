@@ -1,0 +1,4 @@
+[INFO] Line 1
+[INFO] Line 2
+[INFO] Line 1
+[INFO] Line 2

@@ -1,0 +1,45 @@
+---
+- name: Test variables
+  hosts: localhost
+  vars:
+    nodeIps: '192.168.2.24,192.168.2.25,192.168.2.26'
+  tasks:
+  - name: Set Facts
+    set_fact:
+      NODE_IPS: "{{ nodeIps.split(',') | list }}"
+
+  - debug:
+      msg: "NODE_IPS=$(echo '{{ NODE_IPS }}')"
+
+  - set_fact:
+      DC1_NAME: 'datacenter1'
+      DC2_NAME: 'us-east-2a'
+
+  - lineinfile:
+      path: 'phaFacts.txt'
+      insertafter: EOF
+      line: "{{ item.key }}={{item.value }}"
+      regexp: "^{{ item.key }}"
+    with_items:
+      - { key: 'DC1_NAME', value: "{{ DC1_NAME }}" }
+      - { key: 'DC2_NAME', value: "{{ DC2_NAME }}" }
+
+  - shell: "ifconfig en0 | grep 'inet ' | awk '{print $2}'"
+    register: myip
+
+  - debug:
+      msg: "{{ myip.stdout }}"
+
+  - shell: "source phaFacts.txt"
+    register: sourceFacts
+
+  - shell: "echo {{ item }}"
+    with_items:
+    - "{{ DC1_NAME }}"
+    - "{{ DC2_NAME }}"
+    when: sourceFacts.rc|int == 0
+    register: dc2Out
+
+  - debug:
+      msg: "{{ item.stdout }}"
+    with_items: "{{ dc2Out.results }}"

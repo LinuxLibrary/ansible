@@ -1,0 +1,24 @@
+--- # Loops practice
+- name: Loops Practice
+  hosts: localhost
+  tasks:
+  - name: Iteration using with_items
+    debug:
+      msg: "{{ item }}"
+    with_items:
+    - 1
+    - [2,3]
+    - 4
+
+  - name: Iteration using loop
+    debug:
+      msg: "{{ item }}"
+    loop:
+    - 1
+    - [2,3]
+    - 4
+
+  - name: Iteration using loop and ansible filter flatten
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ [1,[2,3],4] | flatten(1) }}"

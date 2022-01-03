@@ -1,0 +1,78 @@
+---
+- name: Perform variable sanity check
+  hosts: localhost
+  gather_facts: false
+  vars:
+    nodeIps: [u'192.168.1.110', u'192.168.2.120']
+    fullName: []
+    consoleLogs: []
+    tokens:
+      CMC:
+        DEV: "kjnsd9fudsfiadsfuawer39r3ernew49"
+      DOWNLOAD:
+        DEV: "98789c798877dfdh"
+      SEEDAUTH:
+        DEV: "9v8sa7df7sadf98asdf"
+    baseDirectory: "/Users/arjunshrinivas/workspace/ansibleTests"
+    tmpDirectory: "{{ baseDirectory }}/tmp"
+    dynatraceDirectory: "{{ baseDirectory }}/dtmanaged"
+    installer: "managed-installer.sh"
+    agVersion: "{{ 'latest' if version == 'latest' else 'version/' + version }}"
+    url: "https://www.linuxlibrary.in/api/v1/unix/{{ agVersion }}?arch=x86"
+  tasks:
+  - name: Variable is empty or not defined
+    set_fact:
+      consoleLogs: "{{ consoleLogs + ['[ERROR] Variable is empty or not defined'] }}"
+    when: item is not defined or item == ""
+    with_items:
+    - "{{ firstname }}"
+    - "{{ lastname }}"
+
+  - debug:
+      msg: "{{ consoleLogs }}"
+
+  - debug:
+      msg: "URL: {{ url }}"
+
+  - name: Possible command chaining
+    fail:
+      msg: "[ERROR] Possible command chaining detected in '{{ item }}'. Do not use ' ` ; & ' characters"
+    when: item is defined and item != "" and (( item | regex_search( '`' | string) ) or ( item | regex_search( ';' | string) ) or ( item | regex_search( '&' | string) ))
+    with_items:
+    - "{{ firstname }}"
+    - "{{ lastname }}"
+
+  - debug:
+      msg: "{{ item }}"
+    with_items:
+    - "CMC-DEV: {{ tokens['CMC'][dtmENV] }}"
+
+  - file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+    - "{{ dynatraceDirectory }}/{{ installer }}"
+    - "{{ tmpDirectory }}/{{ installer }}"
+
+  - set_fact:
+      fullName: "{{ fullName + ['\"' + item + '\"'] }}"
+    with_items:
+    - firstname
+    - lastname
+
+  - debug:
+      msg: "Full Name: {{ fullName }}"
+
+  - set_fact:
+      fullName: "{{ fullName | regex_replace(\"'\", '\"') }}"
+
+  - set_fact:
+      nodeIps: "{{ nodeIps | regex_replace(\"u'\",'\"') | regex_replace(\"'\", '\"') }}"
+
+  - debug:
+      msg: "{{ nodeIps | list | first }}"
+
+  - lineinfile:
+      path: "phaFacts.txt"
+      insertafter: EOF
+      line: "'{{ nodeIps }}'"
